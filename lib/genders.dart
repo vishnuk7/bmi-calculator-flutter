@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
-const int lightTextColor = 0xFF8D8E98;
+import 'constants.dart';
 
 class Gender extends StatelessWidget {
   final String type;
@@ -24,10 +23,7 @@ class Gender extends StatelessWidget {
         ),
         Text(
           type,
-          style: TextStyle(
-            fontSize: 18.0,
-            color: Color(lightTextColor),
-          ),
+          style: kLableStyle,
         ),
       ],
     );

@@ -1,20 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'constants.dart';
 
 import 'custom_card.dart';
 import 'genders.dart';
-
-const bottomContainerHeight = 80.0;
-const int activeColor = 0xFF1D1E33;
-const int inactiveColor = 0xFF111328;
-const int pink = 0xFFEB1555;
 
 class GenderData {
   int currentColor;
   bool isActive;
   String type;
   GenderData({@required this.type}) {
-    this.currentColor = inactiveColor;
+    this.currentColor = kInactiveColor;
     this.isActive = false;
   }
 }
@@ -22,10 +18,10 @@ class GenderData {
 void selectedGender(GenderData data) {
   if (!data.isActive && (data.type == 'M' || data.type == 'F')) {
     data.isActive = true;
-    data.currentColor = activeColor;
+    data.currentColor = kActiveColor;
   } else {
     data.isActive = false;
-    data.currentColor = inactiveColor;
+    data.currentColor = kInactiveColor;
   }
 }
 
@@ -55,7 +51,7 @@ class _InputPageState extends State<InputPage> {
                     setState(() {
                       if (female.isActive) {
                         female.isActive = false;
-                        female.currentColor = inactiveColor;
+                        female.currentColor = kInactiveColor;
                       }
                       selectedGender(male);
                     });
@@ -69,7 +65,7 @@ class _InputPageState extends State<InputPage> {
                     onPress: () {
                       setState(() {
                         if (male.isActive) {
-                          male.currentColor = inactiveColor;
+                          male.currentColor = kInactiveColor;
                           male.isActive = false;
                         }
                         selectedGender(female);
@@ -85,25 +81,25 @@ class _InputPageState extends State<InputPage> {
           ),
           Expanded(
               child: CustomCard(
-            cardColor: Color(inactiveColor),
+            cardColor: Color(kInactiveColor),
           )),
           Expanded(
               child: Row(
             children: <Widget>[
               Expanded(
                   child: CustomCard(
-                cardColor: Color(inactiveColor),
+                cardColor: Color(kInactiveColor),
               )),
               Expanded(
                   child: CustomCard(
-                cardColor: Color(inactiveColor),
+                cardColor: Color(kInactiveColor),
               )),
             ],
           )),
           Container(
-            color: Color(pink),
+            color: Color(kPink),
             width: double.infinity,
-            height: bottomContainerHeight,
+            height: kBottomContainerHeight,
             margin: EdgeInsets.only(top: 10.0),
           ),
         ],
