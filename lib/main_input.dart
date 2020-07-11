@@ -33,7 +33,7 @@ class InputPage extends StatefulWidget {
 class _InputPageState extends State<InputPage> {
   GenderData male = new GenderData(type: 'M');
   GenderData female = new GenderData(type: 'F');
-
+  int height = 180;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,6 +41,7 @@ class _InputPageState extends State<InputPage> {
         title: Text('BMI CALCULATOR'),
       ),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Expanded(
             child: Row(
@@ -57,7 +58,7 @@ class _InputPageState extends State<InputPage> {
                     });
                   },
                   cardChild:
-                      Gender(type: 'Male', typeIcon: FontAwesomeIcons.mars),
+                      Gender(type: 'MALE', typeIcon: FontAwesomeIcons.mars),
                   cardColor: Color(male.currentColor),
                 )),
                 Expanded(
@@ -73,7 +74,7 @@ class _InputPageState extends State<InputPage> {
                     },
                     cardColor: Color(female.currentColor),
                     cardChild: Gender(
-                        type: 'Female', typeIcon: FontAwesomeIcons.venus),
+                        type: 'FEMALE', typeIcon: FontAwesomeIcons.venus),
                   ),
                 ),
               ],
@@ -81,7 +82,52 @@ class _InputPageState extends State<InputPage> {
           ),
           Expanded(
               child: CustomCard(
-            cardColor: Color(kInactiveColor),
+            cardColor: Color(kActiveColor),
+            cardChild: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text(
+                  'HEIGHT',
+                  style: kLableStyle,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.baseline,
+                  textBaseline: TextBaseline.alphabetic,
+                  children: <Widget>[
+                    Text(
+                      height.toString(),
+                      style: kNumberFontStyle,
+                    ),
+                    SizedBox(width: 5.0),
+                    Text(
+                      'cm',
+                      style: kLableStyle,
+                    ),
+                  ],
+                ),
+                SliderTheme(
+                  data: SliderThemeData(
+                    thumbColor: Color(kPink),
+                    thumbShape: RoundSliderThumbShape(enabledThumbRadius: 15.0),
+                    overlayShape: RoundSliderOverlayShape(overlayRadius: 30.0),
+                    overlayColor: Color(0x29EB1555),
+                    activeTrackColor: Colors.white,
+                    inactiveTrackColor: Color(kGrey),
+                  ),
+                  child: Slider(
+                    value: height.toDouble(),
+                    min: 120.0,
+                    max: 220.0,
+                    onChanged: (double newValue) {
+                      setState(() {
+                        height = newValue.round();
+                      });
+                    },
+                  ),
+                ),
+              ],
+            ),
           )),
           Expanded(
               child: Row(
