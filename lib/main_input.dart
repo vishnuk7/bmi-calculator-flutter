@@ -52,7 +52,11 @@ class _InputPageState extends State<InputPage> {
                 Expanded(
                     child: GestureDetector(
                   onTap: () => setState(() {
-                    if (!female.isActive) selectedGender(male);
+                    if (female.isActive) {
+                      female.isActive = false;
+                      female.currentColor = inactiveColor;
+                    }
+                    selectedGender(male);
                   }),
                   child: CustomCard(
                     cardChild:
@@ -63,7 +67,11 @@ class _InputPageState extends State<InputPage> {
                 Expanded(
                   child: GestureDetector(
                     onTap: () => setState(() {
-                      if (!male.isActive) selectedGender(female);
+                      if (male.isActive) {
+                        male.currentColor = inactiveColor;
+                        male.isActive = false;
+                      }
+                      selectedGender(female);
                     }),
                     child: CustomCard(
                       cardColor: Color(female.currentColor),
