@@ -50,34 +50,34 @@ class _InputPageState extends State<InputPage> {
             child: Row(
               children: <Widget>[
                 Expanded(
-                    child: GestureDetector(
-                  onTap: () => setState(() {
-                    if (female.isActive) {
-                      female.isActive = false;
-                      female.currentColor = inactiveColor;
-                    }
-                    selectedGender(male);
-                  }),
-                  child: CustomCard(
-                    cardChild:
-                        Gender(type: 'Male', typeIcon: FontAwesomeIcons.mars),
-                    cardColor: Color(male.currentColor),
-                  ),
+                    child: CustomCard(
+                  onPress: () {
+                    setState(() {
+                      if (female.isActive) {
+                        female.isActive = false;
+                        female.currentColor = inactiveColor;
+                      }
+                      selectedGender(male);
+                    });
+                  },
+                  cardChild:
+                      Gender(type: 'Male', typeIcon: FontAwesomeIcons.mars),
+                  cardColor: Color(male.currentColor),
                 )),
                 Expanded(
-                  child: GestureDetector(
-                    onTap: () => setState(() {
-                      if (male.isActive) {
-                        male.currentColor = inactiveColor;
-                        male.isActive = false;
-                      }
-                      selectedGender(female);
-                    }),
-                    child: CustomCard(
-                      cardColor: Color(female.currentColor),
-                      cardChild: Gender(
-                          type: 'Female', typeIcon: FontAwesomeIcons.venus),
-                    ),
+                  child: CustomCard(
+                    onPress: () {
+                      setState(() {
+                        if (male.isActive) {
+                          male.currentColor = inactiveColor;
+                          male.isActive = false;
+                        }
+                        selectedGender(female);
+                      });
+                    },
+                    cardColor: Color(female.currentColor),
+                    cardChild: Gender(
+                        type: 'Female', typeIcon: FontAwesomeIcons.venus),
                   ),
                 ),
               ],
