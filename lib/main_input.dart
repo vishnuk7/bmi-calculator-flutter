@@ -34,6 +34,8 @@ class _InputPageState extends State<InputPage> {
   GenderData male = new GenderData(type: 'M');
   GenderData female = new GenderData(type: 'F');
   int height = 180;
+  int weight = 60;
+  int age = 18;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -134,11 +136,81 @@ class _InputPageState extends State<InputPage> {
             children: <Widget>[
               Expanded(
                   child: CustomCard(
-                cardColor: Color(kInactiveColor),
+                cardColor: Color(kActiveColor),
+                cardChild: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      'WEIGHT',
+                      style: kLableStyle,
+                    ),
+                    Text(
+                      weight.toString(),
+                      style: kNumberFontStyle,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        RoundIconButton(
+                          icon: FontAwesomeIcons.plus,
+                          iconColor: Colors.white,
+                          onTap: () => setState(() {
+                            weight++;
+                          }),
+                        ),
+                        SizedBox(
+                          width: 20.0,
+                        ),
+                        RoundIconButton(
+                          icon: FontAwesomeIcons.minus,
+                          iconColor: Colors.white,
+                          onTap: () => setState(() {
+                            weight--;
+                          }),
+                        )
+                      ],
+                    ),
+                  ],
+                ),
               )),
               Expanded(
                   child: CustomCard(
-                cardColor: Color(kInactiveColor),
+                cardColor: Color(kActiveColor),
+                cardChild: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      'AGE',
+                      style: kLableStyle,
+                    ),
+                    Text(
+                      age.toString(),
+                      style: kNumberFontStyle,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        RoundIconButton(
+                          icon: FontAwesomeIcons.plus,
+                          iconColor: Colors.white,
+                          onTap: () => setState(() {
+                            age++;
+                          }),
+                        ),
+                        SizedBox(
+                          width: 20.0,
+                        ),
+                        RoundIconButton(
+                          icon: FontAwesomeIcons.minus,
+                          iconColor: Colors.white,
+                          onTap: () => setState(() {
+                            age--;
+                          }),
+                        )
+                      ],
+                    ),
+                  ],
+                ),
               )),
             ],
           )),
@@ -149,6 +221,31 @@ class _InputPageState extends State<InputPage> {
             margin: EdgeInsets.only(top: 10.0),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class RoundIconButton extends StatelessWidget {
+  final IconData icon;
+  final Color iconColor;
+  final Function onTap;
+  RoundIconButton({@required this.icon, this.iconColor, @required this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    return RawMaterialButton(
+      child: Icon(
+        icon,
+        color: iconColor,
+      ),
+      onPressed: onTap,
+      fillColor: Color(0xFF4C4F5E),
+      elevation: 0.0,
+      shape: CircleBorder(),
+      constraints: BoxConstraints.tightFor(
+        width: 56.0,
+        height: 56.0,
       ),
     );
   }
