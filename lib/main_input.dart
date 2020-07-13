@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'constants.dart';
+import 'calcuate_bmi.dart';
 
 import 'custom_card.dart';
 import 'genders.dart';
@@ -36,6 +37,7 @@ class _InputPageState extends State<InputPage> {
   int height = 180;
   int weight = 60;
   int age = 18;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -215,7 +217,16 @@ class _InputPageState extends State<InputPage> {
             ],
           )),
           GestureDetector(
-            onTap: () => Navigator.pushNamed(context, '/result'),
+            onTap: () {
+              CalculateBMI cal =
+                  CalculateBMI(weight: this.weight, height: this.height);
+
+              Navigator.pushNamed(context, '/result', arguments: {
+                "bmi": cal.getBMI(),
+                "result": cal.getResult(),
+                "feedback": cal.feedback()
+              });
+            },
             child: Container(
               color: Color(kPink),
               width: double.infinity,
